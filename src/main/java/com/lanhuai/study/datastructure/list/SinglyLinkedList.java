@@ -1,10 +1,12 @@
 package com.lanhuai.study.datastructure.list;
 
 
+import java.lang.reflect.Array;
+
 /**
  * @author lanhuai
  */
-public class SinglyLinkedList<E> implements List<E> {
+public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
 
     /**
      * 头结点,不存储数据,head.next指向第一个数据节点
@@ -32,7 +34,15 @@ public class SinglyLinkedList<E> implements List<E> {
     }
 
     public void clear() {
-
+        for (Node<E> node = head.next; node != null;) {
+            Node<E> next = node.next;
+            node.item = null;
+            node.next = null;
+            node = next;
+        }
+        head.next = null;
+        head.item = null;
+        size = 0;
     }
 
     public E get(int index) {
@@ -73,7 +83,14 @@ public class SinglyLinkedList<E> implements List<E> {
     }
 
     public int indexOf(Object object) {
-        return 0;
+        int index = 0;
+        for (Node<E> node = head.next; node != null; node = node.next) {
+            if (object.equals(node.item)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 
     public void insert(E element, int index) {
@@ -101,15 +118,32 @@ public class SinglyLinkedList<E> implements List<E> {
     }
 
     public E remove(int index) {
-        return null;
+        checkIndex(index);
+        int j = 0;
+        Node<E> p = head;
+        while (p != null && j < index) {
+            p = p.next;
+            j++;
+        }
+
+        if (p == null || p.next == null || j > index) {
+            throw new IllegalStateException("position of the index is not exist");
+        }
+
+        Node<E> next = p.next;
+        p.next = next.next;
+
+        E item = next.item;
+        next.next = null;
+        next.item = null;
+
+        size--;
+
+        return item;
     }
 
     public int size() {
         return size;
-    }
-
-    public void addAll(List<? extends E> list) {
-
     }
 
     public Object[] toArray() {
@@ -126,7 +160,35 @@ public class SinglyLinkedList<E> implements List<E> {
         return objects;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        return null;
+        if (a.length < size) {
+            // Make a new array of a's runtime type, but my contents:
+            Class<?> newType = a.getClass();
+            T[] copy = ((Object)newType == (Object)Object[].class)
+                    ? (T[]) new Object[size]
+                    : (T[]) Array.newInstance(newType.getComponentType(), size);
+            int j = 0;
+            Node<E> p = head;
+            while (p != null && j < size) {
+                p = p.next;
+                copy[j] = (T) p.item;
+                j++;
+            }
+            return copy;
+        }
+
+        int j = 0;
+        Node<E> p = head;
+        while (p != null && j < size) {
+            p = p.next;
+            a[j] = (T) p.item;
+            j++;
+        }
+
+        if (a.length > size)
+            a[size] = null;
+        return a;
+
     }
 }

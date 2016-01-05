@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @author lanhuai
  */
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E> extends AbstractList<E> implements List<E> {
 
     private static final int MAX_SIZE = 20;
 
@@ -90,16 +90,6 @@ public class ArrayList<E> implements List<E> {
         return size;
     }
 
-    public void addAll(List<? extends E> list) {
-        for (int x = 0; x < list.size(); x++) {
-            E element = list.get(x);
-            if (indexOf(element) < 0) {
-                int index = size();
-                insert(element, index);
-            }
-        }
-    }
-
     public Object[] toArray() {
         // 偷懒了,用个现成的
         return Arrays.copyOf(elements, size);
@@ -108,9 +98,10 @@ public class ArrayList<E> implements List<E> {
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         // 偷懒了,用个现成的
-        if (a.length < size)
+        if (a.length < size) {
             // Make a new array of a's runtime type, but my contents:
             return (T[]) Arrays.copyOf(elements, size, a.getClass());
+        }
         System.arraycopy(elements, 0, a, 0, size);
         if (a.length > size)
             a[size] = null;

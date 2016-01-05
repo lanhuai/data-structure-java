@@ -120,6 +120,9 @@ public class ArrayListTest {
         assertEquals(0, list.size());
         assertEquals(true, list.isEmpty());
         printList(list);
+
+        Object[] objects = list.toArray();
+        assertEquals(0, objects.length);
     }
 
     @Test
@@ -130,6 +133,7 @@ public class ArrayListTest {
         List<String> strList = new ArrayList<String>();
         strList.insert("h", strList.size());
         list.addAll(strList);
+        printList(list);
 
         assertEquals(size + strList.size(), list.size());
         assertEquals(list.size() - 1, list.indexOf("h"));
