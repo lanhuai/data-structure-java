@@ -11,7 +11,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
     /**
      * 头结点,不存储数据,head.next指向第一个数据节点
      */
-    private Node<E> head;
+    private final Node<E> head = new Node<E>(null, null);
 
     private int size;
 
@@ -23,10 +23,6 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
             this.item = item;
             this.next = next;
         }
-    }
-
-    public SinglyLinkedList() {
-        this.head = new Node<E>(null, null);
     }
 
     public boolean isEmpty() {
