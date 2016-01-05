@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 /**
- * @author <a href="mailto:lanhuai@gmail.com">Ning Yubin</a>
+ * @author lanhuai
  */
 public class ArrayListTest {
 
