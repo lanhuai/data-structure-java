@@ -182,8 +182,9 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
             j++;
         }
 
-        if (a.length > size)
+        if (a.length > size) {
             a[size] = null;
+        }
         return a;
 
     }
