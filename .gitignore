@@ -1,18 +1,25 @@
-# Eclipse project files
-.classpath
-.project
-.springBeans
-.settings/
-
-
-# Intellij project files
-*.iml
-*.iws
-*.ipr
-.idea/
-
-# Others
 target/
-logs/
-.DS_Store
-*~
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+catalina.base_IS_UNDEFINED
