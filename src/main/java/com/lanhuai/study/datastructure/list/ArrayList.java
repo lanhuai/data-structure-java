@@ -13,10 +13,12 @@ public class ArrayList<E> extends AbstractList<E> implements List<E> {
 
     private int size;
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public void clear() {
         for (int x = 0; x < size; x++) {
             elements[x] = null;
@@ -24,12 +26,14 @@ public class ArrayList<E> extends AbstractList<E> implements List<E> {
         size = 0;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public E get(int index) {
         checkIndex(index);
         return (E) elements[index];
     }
 
+    @Override
     public void insert(E element, int index) {
         if (element == null) {
             throw new NullPointerException();
@@ -60,6 +64,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E> {
         }
     }
 
+    @Override
     public int indexOf(Object object) {
         for (int x = 0; x < size; x++) {
             if (elements[x].equals(object)) {
@@ -69,6 +74,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E> {
         return -1;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public E remove(int index) {
         checkIndex(index);
@@ -86,15 +92,18 @@ public class ArrayList<E> extends AbstractList<E> implements List<E> {
         return oldValue;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public Object[] toArray() {
         // 偷懒了,用个现成的
         return Arrays.copyOf(elements, size);
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         // 偷懒了,用个现成的
@@ -103,8 +112,9 @@ public class ArrayList<E> extends AbstractList<E> implements List<E> {
             return (T[]) Arrays.copyOf(elements, size, a.getClass());
         }
         System.arraycopy(elements, 0, a, 0, size);
-        if (a.length > size)
+        if (a.length > size) {
             a[size] = null;
+        }
         return a;
     }
 }
