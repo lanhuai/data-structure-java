@@ -25,10 +25,12 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
         }
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public void clear() {
         for (Node<E> node = head.next; node != null;) {
             Node<E> next = node.next;
@@ -41,6 +43,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
         size = 0;
     }
 
+    @Override
     public E get(int index) {
         checkIndex(index);
 
@@ -78,6 +81,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
         return index >= 0 && index <= size;
     }
 
+    @Override
     public int indexOf(Object object) {
         int index = 0;
         for (Node<E> node = head.next; node != null; node = node.next) {
@@ -89,6 +93,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
         return -1;
     }
 
+    @Override
     public void insert(E element, int index) {
         if (element == null) {
             throw new NullPointerException();
@@ -113,6 +118,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
         size++;
     }
 
+    @Override
     public E remove(int index) {
         checkIndex(index);
         int j = 0;
@@ -138,10 +144,12 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
         return item;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public Object[] toArray() {
         Object[] objects = new Object[size];
 
@@ -156,6 +164,7 @@ public class SinglyLinkedList<E> extends AbstractList<E> implements List<E> {
         return objects;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         if (a.length < size) {
